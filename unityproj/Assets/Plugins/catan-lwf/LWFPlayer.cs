@@ -21,7 +21,7 @@ public class LWFPlayer : LWFObject {
   void Awake() {
     //_lwfobj = GetComponentInChildren<LwfSampleObject>();
 #if UNITY_EDITOR
-    //UseDrawMeshRenderer();
+    UseDrawMeshRenderer();
 #endif
   }
   void Start() {

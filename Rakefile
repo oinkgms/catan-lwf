@@ -1,6 +1,8 @@
 PACKAGE_NAME = 'catan-lwf'
+ADDITIONAL_EXPORT_PATH = 'Assets/Resources/shaders'
 
-require './package'
+require './subtools/package'
+require './unityproj/Assets/Editor/catan-lwf/Tools/conv_lwf'
 
 PROJECT_LWF_DLL_PATH = "#{PROJECT_PATH}/Assets/#{PLUGINS_ROOT}"
 PROJECT_LWF_EDITOR_DLL_PATH = "#{PROJECT_PATH}/Assets/#{EDITOR_ROOT}"

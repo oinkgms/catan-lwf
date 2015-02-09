@@ -1,3 +1,6 @@
 [submodule "base"]
 	path = base
 	url = https://github.com/oinkgms/lwf.git
+[submodule "subtools"]
+	path = subtools
+	url = https://github.com/oinkgms/catan-subtools.git
