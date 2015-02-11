@@ -28,6 +28,7 @@ namespace catan {
     //
     void Awake() {
       //_lwfobj = GetComponentInChildren<LwfSampleObject>();
+      this.shaderName = "Oink/LWF";
     }
     void Start() {
       //GotoAndPlayMovie("_root", 1, true);
