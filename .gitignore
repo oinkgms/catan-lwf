@@ -26,3 +26,5 @@ sysinfo.txt
 .import
 /log-*.log
 unityproj/*.apk
+swf/**/*.lwfdata
+swf/**/*.bitmap
