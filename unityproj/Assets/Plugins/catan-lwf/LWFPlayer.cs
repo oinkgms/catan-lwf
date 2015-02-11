@@ -1,76 +1,103 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[ExecuteInEditMode]
-public class LWFPlayer : LWFObject {
-  private static bool _setLoader = false;
-  [HideInInspector] public string _lwfName;
-  [HideInInspector] public string _texDir;
-  public string lwfName {
-    get {
-      return _lwfName;
+namespace catan {
+  using RenderType = LWFSpriteObject.RenderType;
+  [ExecuteInEditMode, AddComponentMenu("")]
+  public partial class LWFPlayer : LWFObject {
+    private static bool _setLoader = false;
+    //
+    [HideInInspector] public string _lwfName;
+    [HideInInspector] public string _texDir;
+    [HideInInspector] public RenderType _renderType = RenderType.Mesh;
+    //
+    public string lwfName {
+      get {
+        return _lwfName;
+      }
+      set {
+        set_resource_name(value);
+      }
     }
-    set {
-      set_resource_name(value);
+    public RenderType renderType {
+      set { _renderType = value; }
     }
-  }
-  public LWF.Movie rootMovie {
-    get { return lwf.rootMovie; }
-  }
-  //
-  void Awake() {
-    //_lwfobj = GetComponentInChildren<LwfSampleObject>();
+    public LWF.Movie rootMovie {
+      get { return lwf.rootMovie; }
+    }
+    //
+    void Awake() {
+      //_lwfobj = GetComponentInChildren<LwfSampleObject>();
+    }
+    void Start() {
+      //GotoAndPlayMovie("_root", 1, true);
+      load_lwf();
+    }
+    //
+    //public void GotoAndPlayMovie(string instancename, string labelname, bool immortal=false) {
+    //  GotoAndPlay(labelname);
+    //  lwf.rootMovie.GotoAndPlay(labelname);
+    //}
+    //
+    private void load_lwf() {
+      set_loader();
+      switch (_renderType) {
+      case RenderType.Mesh:
 #if UNITY_EDITOR
-    UseDrawMeshRenderer();
+        UseDrawMeshRenderer();
+#else
+        UseCombinedMeshRenderer();
 #endif
-  }
-  void Start() {
-    //GotoAndPlayMovie("_root", 1, true);
-    load_lwf();
-    //Load("lwfdata/character", "lwfdata/");
-  }
-  //
-  //public void GotoAndPlayMovie(string instancename, string labelname, bool immortal=false) {
-  //  GotoAndPlay(labelname);
-  //  lwf.rootMovie.GotoAndPlay(labelname);
-  //}
-  //
-  private void load_lwf() {
-    set_loader();
-    Load(_lwfName, _texDir);
-    var labels = lwf.rootMovie.GetCurrentLabels();
-    foreach (LWF.LabelData data in labels) {
-      Debug.Log(string.Format("{0} {1}", data.frame, data.name));
+        break;
+      case RenderType.UI:
+        clear_mesh_components();
+        UseUIVertexRenderer();
+        break;
+      }
+      Load(_lwfName, _texDir);
+      //AttachLWF("_root", _lwfName, "_root");
+      //var labels = lwf.rootMovie.GetCurrentLabels();
+      //foreach (LWF.LabelData data in labels) {
+      //  Debug.Log(string.Format("{0} {1}", data.frame, data.name));
+      //}
     }
-  }
-  //
-  private void set_resource_name(string name) {
-    _lwfName = name;
-    _texDir = System.IO.Path.GetDirectoryName(name);
-    if (_texDir.Length > 0) {
-      _texDir += "/";
+    //
+    private void set_resource_name(string name) {
+      _lwfName = name;
+      _texDir = System.IO.Path.GetDirectoryName(name);
+      if (_texDir.Length > 0) {
+        _texDir += "/";
+      }
     }
-  }
-  public static void set_loader() {
-    if (!_setLoader) {
-      LWFObject.SetLoader(
-        lwfDataLoader:(name) => {
-          TextAsset asset = Resources.Load(name) as TextAsset;
-          if (asset == null) {
-            return null;
-          }
-          return asset.bytes;
-        },
-        textureLoader:(name) => {
-          Texture2D texture = Resources.Load(name) as Texture2D;
-          if (texture == null) {
-            return null;
-          }
-          return texture;
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
+    private void clear_mesh_components() {
+      foreach (Transform t in transform) {
+        GameObject obj = t.gameObject;
+        if (obj.name.StartsWith("LWF/")) {
+          GameObject.DestroyImmediate(obj);
         }
-      );
-      _setLoader = true;
+      }
+    }
+    private static void set_loader() {
+      if (!_setLoader) {
+        LWFObject.SetLoader(
+          lwfDataLoader:(name) => {
+            TextAsset asset = Resources.Load(name) as TextAsset;
+            if (asset == null) {
+              return null;
+            }
+            return asset.bytes;
+          },
+          textureLoader:(name) => {
+            Texture2D texture = Resources.Load(name) as Texture2D;
+            if (texture == null) {
+              return null;
+            }
+            return texture;
+          }
+        );
+        _setLoader = true;
+      }
     }
   }
-
 }

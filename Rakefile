@@ -19,16 +19,20 @@ CS_SRCS = FileList['unityproj/**/*.cs']
 task :default do
   sh "rake -T"
 end
-desc "build lwf.dll"
-task :build_dll do
-  cd "base/csharp/unity/build" do
-    sh "rake"
+
+
+namespace :dll do
+  desc "build lwf.dll"
+  task :build do
+    cd "base/csharp/unity/build" do
+      sh "rake"
+    end
   end
-end
-desc "install lwf.dll"
-task :install_dll => [:build_dll] do
-  install LWF_DLL, PROJECT_LWF_DLL_PATH
-  install LWF_EDITOR_DLL, PROJECT_LWF_EDITOR_DLL_PATH
+  desc "install lwf.dll"
+  task :install => [:build] do
+    install LWF_DLL, PROJECT_LWF_DLL_PATH
+    install LWF_EDITOR_DLL, PROJECT_LWF_EDITOR_DLL_PATH
+  end
 end
 desc "ganerate API reference document"
 task :gendoc do
