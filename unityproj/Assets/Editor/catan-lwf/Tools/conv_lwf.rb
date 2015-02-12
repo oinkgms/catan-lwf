@@ -6,6 +6,7 @@ UNITYPROJ_PATH = File.expand_path("#{SELF_PATH}/../../../../")
 
 TEXTURE_PACKER = '/Applications/TexturePacker.app/Contents/MacOS/TexturePacker'
 HAS_TEXTURE_PACKER = File.exist?(TEXTURE_PACKER)
+TEXTURE_PACKER_OPTS = '--size-constraints POT --algorithm MaxRects --maxrects-heuristics Best --scale 1.0 --pack-mode Best'
 SWF2LWF_RB = File.expand_path("#{SELF_PATH}/../../../../../base/tools/swf2lwf/swf2lwf.rb")
 
 SRCDIR ||= File.expand_path("#{UNITYPROJ_PATH}/../swf")
@@ -51,7 +52,7 @@ namespace :lwf do
     file bmp => [swf, lwfdir, bmpdir] do |t| # extract texture and generate atlus
       sh "ruby #{SWF2LWF_RB} -p #{t.prerequisites[0]}"
       texs = FileList["#{t.prerequisites[1]}/*.png"]
-      sh "#{TEXTURE_PACKER} --scale 1.0 --format json --data #{json} --sheet #{bmp} #{texs}"
+      sh "#{TEXTURE_PACKER} #{TEXTURE_PACKER_OPTS} --format json --data #{json} --sheet #{bmp} #{texs}"
       rm "#{lwf}"
     end
     file lwf => [swf, bmp] do |t| #
@@ -70,11 +71,11 @@ namespace :lwf do
     end
   end
 
-  p LWFDATA_DIRS
-  p BMP_FILES
-  p LWF_FILES
-  p ROMBMP_FILES
-  p ROMLWF_FILES
+  #p LWFDATA_DIRS
+  #p BMP_FILES
+  #p LWF_FILES
+  #p ROMBMP_FILES
+  #p ROMLWF_FILES
 
 
   desc "extract bitmap from swf"
