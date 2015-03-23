@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-#if CATAN_ENABLE_UNILUA
+#if CATAN_LWF_ENABLE_UNILUA
 using UniLua;
 using catan.lwf;
 namespace catan {
@@ -20,6 +20,7 @@ namespace catan {
         SpriteObject sobj = obj.GetComponent<SpriteObject>();
         Debug.Log("HOGE");
         push_new<SpriteObject>(lua, klassName, sobj, obj);
+        lua.SetField(-2, "lwf");
       }
       // @class MaskableGraphic
       // @desc 色を設定する
