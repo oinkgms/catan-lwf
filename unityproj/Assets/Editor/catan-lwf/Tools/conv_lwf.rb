@@ -7,21 +7,33 @@ UNITYPROJ_PATH = File.expand_path("#{SELF_PATH}/../../../../")
 TEXTURE_PACKER = '/Applications/TexturePacker.app/Contents/MacOS/TexturePacker'
 HAS_TEXTURE_PACKER = File.exist?(TEXTURE_PACKER)
 TEXTURE_PACKER_OPTS = '--size-constraints POT --algorithm MaxRects --maxrects-heuristics Best --scale 1.0 --pack-mode Best'
-SWF2LWF_RB = File.expand_path("#{SELF_PATH}/../../../../../base/tools/swf2lwf/swf2lwf.rb")
+SWF2LWF_RB = File.expand_path("#{SELF_PATH}/swf2lwf/swf2lwf.rb")
 
-SRCDIR ||= File.expand_path("#{UNITYPROJ_PATH}/../swf")
-DSTDIR ||= File.expand_path("#{UNITYPROJ_PATH}/Assets/Resources/")
+#SWF_DIR ||= File.expand_path("#{UNITYPROJ_PATH}/../swf")
+#LWF_DIR ||= File.expand_path("#{UNITYPROJ_PATH}/Assets/Resources/")
+SWF_DIR ||= ""
+LWF_DIR ||= ""
 
-SWF_FILES_ABS = FileList["#{SRCDIR}/**/*.swf"]
-SWF_FILES_REL = SWF_FILES_ABS.map { |swf| swf.gsub(/#{SRCDIR}(\/)?/, '') }
+if SWF_DIR.empty? or LWF_DIR.empty?
+  puts "ERROR: set 'SWF_DIR' and 'LWF_DIR'"
+  exit 1
+end
+
+SWF_FILES_ABS = FileList["#{SWF_DIR}/**/*.swf"]
+SWF_FILES_REL = SWF_FILES_ABS.map { |swf| swf.gsub(/#{SWF_DIR}(\/)?/, '') }
 SWF_FILES = SWF_FILES_ABS.zip(SWF_FILES_REL)
 
 
 #p SWF2LWF_RB
 #p File.exist?(SWF2LWF_RB)
-#p SRCDIR
-#p DSTDIR
+#p SWF_DIR
+#p LWF_DIR
 p SWF_FILES
+
+task :hogehoge do
+  p SELF_PATH
+  p SWF2LWF_RB
+end
 
 namespace :lwf do
   LWFDATA_DIRS = FileList.new
@@ -38,8 +50,8 @@ namespace :lwf do
     bmp = swf.pathmap("#{bmpdir}/%n.bitmap.png")
     json = swf.pathmap("#{bmpdir}/%n.bitmap.json")
     lwf = swf.pathmap("#{lwfdir}/%n.lwf")
-    romlwf = rel.pathmap("#{DSTDIR}/%X.bytes")
-    rombmp = rel.pathmap("#{DSTDIR}/%X.bitmap.png")
+    romlwf = rel.pathmap("#{LWF_DIR}/%X.bytes")
+    rombmp = rel.pathmap("#{LWF_DIR}/%X.bitmap.png")
     romdir = File.dirname(romlwf)
     LWFDATA_DIRS.include(lwfdir)
     BMP_FILES.include(bmp)

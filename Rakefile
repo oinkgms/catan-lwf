@@ -1,5 +1,7 @@
 PACKAGE_NAME = 'catan-lwf'
 ADDITIONAL_EXPORT_PATH = 'Assets/Resources/shaders'
+SWF_DIR = 'swf/lwfdata'
+LWF_DIR = 'unityproj/Assets/Resources/lwfdata'
 
 require './subtools/package'
 require './unityproj/Assets/Editor/catan-lwf/Tools/conv_lwf'
@@ -31,7 +33,7 @@ namespace :dll do
       sh "rake"
     end
   end
-  desc "install lwf.dll"
+  desc "install lwf.dll and etc"
   task :install => [:build] do
     install LWF_DLL, PROJECT_LWF_DLL_PATH
     install LWF_EDITOR_DLL, PROJECT_LWF_EDITOR_DLL_PATH
