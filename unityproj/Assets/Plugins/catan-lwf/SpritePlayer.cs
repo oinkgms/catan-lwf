@@ -34,6 +34,8 @@ namespace catan {
       void Start() {
         //GotoAndPlayMovie("_root", 1, true);
         load_lwf();
+				//materialProperty.Clear();
+				//materialProperty.AddColor("_HogeColor", Color.red);
       }
       //
       //public void GotoAndPlayMovie(string instancename, string labelname, bool immortal=false) {
@@ -56,7 +58,7 @@ namespace catan {
           UseUIVertexRenderer();
           break;
         }
-        Load(_lwfName, _texDir);//, shaderName="Oink/LWF");
+        Load(_lwfName, _texDir, useAdditionalColor:true, shaderName:"Oink/LWF");
         //AttachLWF("_root", _lwfName, "_root");
         //var labels = lwf.rootMovie.GetCurrentLabels();
         //foreach (LWF.LabelData data in labels) {

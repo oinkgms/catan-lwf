@@ -28,3 +28,11 @@ sysinfo.txt
 unityproj/*.apk
 swf/**/*.lwfdata
 swf/**/*.bitmap
+
+
+
+# UniLua
+unityproj/Assets/Editor/UniLua*
+unityproj/Assets/Plugins/UniLua*
+unityproj/Assets/StreamingAssets/LuaRoot*
+

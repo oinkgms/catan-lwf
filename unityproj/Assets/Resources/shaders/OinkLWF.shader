@@ -2,6 +2,7 @@ Shader "Oink/LWF" {
 	Properties {
 		_Color ("Color", Color) = (1, 1, 1, 1)
 		_AdditionalColor ("AdditionalColor", Color) = (0, 0, 0, 0)
+		_HogeColor ("HogeColor", Color) = (0, 0, 0, 0)
 		_MainTex ("Texture", 2D) = "white" {}
 		BlendModeSrc ("BlendModeSrc", Float) = 0
 		BlendModeDst ("BlendModeDst", Float) = 0
@@ -29,6 +30,7 @@ Shader "Oink/LWF" {
 			#ifdef ENABLE_ADD_COLOR
 			fixed4 _AdditionalColor;
 			#endif
+			fixed4 _HogeColor;
 			struct appdata {
 				float4 vertex: POSITION;
 				float2 texcoord: TEXCOORD0;
@@ -61,7 +63,7 @@ Shader "Oink/LWF" {
 			#ifdef ENABLE_ADD_COLOR
 				o += i.additionalColor;
 			#endif
-				return o;// * fixed4(0, 1, 0 , 1);
+				return o * fixed4(_HogeColor.xyz, 1);
 			}
 			ENDCG
 		}
