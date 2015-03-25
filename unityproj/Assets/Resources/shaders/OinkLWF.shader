@@ -63,7 +63,7 @@ Shader "Oink/LWF" {
 			#ifdef ENABLE_ADD_COLOR
 				o += i.additionalColor;
 			#endif
-				return o * fixed4(_HogeColor.xyz, 1);
+				return o;// * fixed4(_HogeColor.xyz, 1);
 			}
 			ENDCG
 		}
