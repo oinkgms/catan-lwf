@@ -50,8 +50,8 @@ namespace catan {
         check_identifier(lua, 1, klassName);
         SpriteObject so = get_component<SpriteObject>(lua, 1);
         string movie = lua.ToString(2);
-        Debug.Log(so);
-        Debug.Log(movie);
+        //Debug.Log(so);
+        //Debug.Log(movie);
         so.player.GotoAndPlayMovie("_root", movie);
         return 0;
       }
