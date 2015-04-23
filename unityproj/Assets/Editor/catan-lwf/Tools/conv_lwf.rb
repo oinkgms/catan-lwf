@@ -24,7 +24,7 @@ unless HAS_TEXTURE_PACKER
 end
 
 SWF_FILES_ABS = FileList["#{SWF_DIR}/**/*.swf"]
-SWF_FILES_REL = SWF_FILES_ABS.map { |swf| swf.gsub(/#{SWF_DIR}(\/)?/, '') }
+SWF_FILES_REL = SWF_FILES_ABS.map { |swf| swf.gsub(/^#{SWF_DIR}(\/)?/, '') }
 SWF_FILES = SWF_FILES_ABS.zip(SWF_FILES_REL)
 
 
