@@ -1,0 +1,156 @@
+{"frames": {
+
+"material_png_1A_体_上.png":
+{
+	"frame": {"x":585,"y":191,"w":203,"h":212},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":203,"h":212},
+	"sourceSize": {"w":203,"h":213},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_体_下.png":
+{
+	"frame": {"x":966,"y":322,"w":142,"h":49},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":3,"w":142,"h":49},
+	"sourceSize": {"w":144,"h":53},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_体_中.png":
+{
+	"frame": {"x":82,"y":377,"w":144,"h":83},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":144,"h":83},
+	"sourceSize": {"w":146,"h":85},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_全身.png":
+{
+	"frame": {"x":2,"y":2,"w":581,"h":373},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":15,"y":0,"w":581,"h":373},
+	"sourceSize": {"w":601,"h":376},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_剣斧.png":
+{
+	"frame": {"x":585,"y":2,"w":399,"h":187},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":32,"w":399,"h":187},
+	"sourceSize": {"w":402,"h":223},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_尻尾.png":
+{
+	"frame": {"x":799,"y":191,"w":202,"h":129},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":202,"h":129},
+	"sourceSize": {"w":210,"h":130},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_影.png":
+{
+	"frame": {"x":986,"y":78,"w":1,"h":1},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":1},
+	"sourceSize": {"w":343,"h":24},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_盾_正面.png":
+{
+	"frame": {"x":106,"y":462,"w":109,"h":102},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":12,"w":109,"h":102},
+	"sourceSize": {"w":113,"h":114},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_脚_上.png":
+{
+	"frame": {"x":106,"y":566,"w":102,"h":76},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":102,"h":76},
+	"sourceSize": {"w":104,"h":78},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_脚_下.png":
+{
+	"frame": {"x":986,"y":2,"w":74,"h":35},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":74,"h":35},
+	"sourceSize": {"w":74,"h":37},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_脚_中.png":
+{
+	"frame": {"x":2,"y":396,"w":78,"h":66},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":0,"w":78,"h":66},
+	"sourceSize": {"w":80,"h":66},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_腕_上.png":
+{
+	"frame": {"x":799,"y":322,"w":124,"h":165},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":124,"h":165},
+	"sourceSize": {"w":125,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_腕前_下.png":
+{
+	"frame": {"x":217,"y":479,"w":105,"h":133},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":105,"h":133},
+	"sourceSize": {"w":107,"h":135},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_腕奥_下.png":
+{
+	"frame": {"x":373,"y":377,"w":102,"h":135},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":102,"h":135},
+	"sourceSize": {"w":104,"h":137},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_顔_上.png":
+{
+	"frame": {"x":2,"y":466,"w":147,"h":102},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":147,"h":102},
+	"sourceSize": {"w":151,"h":113},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_1A_顔_下.png":
+{
+	"frame": {"x":228,"y":377,"w":100,"h":143},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":100,"h":143},
+	"sourceSize": {"w":102,"h":144},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "1a.bitmap.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:520da7f9d486ef70393904a204356231:2db63569f8cb1451c52f3427e0c4d951:49b0f50fd05155c7164da270addbcad6$"
+}
+}

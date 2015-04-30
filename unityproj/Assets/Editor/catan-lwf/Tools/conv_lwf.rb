@@ -45,7 +45,11 @@ SWF_FILES.each do |pairs|
   rel = pairs[1]
   fla = swf.pathmap('%X.fla')
   lwfdir = swf.pathmap('%X.lwfdata')
-  bmpdir = swf.pathmap('%X.bitmap')
+  bmpdir = swf.pathmap('%X.bitmap') # by Publish for LWF
+  publwf = File.exist?(bmpdir)
+  unless publwf
+    bmpdir = swf.pathmap('%X.ext_bitmap') # extract by swf2lwf
+  end
   bmp = swf.pathmap("#{bmpdir}/%n.bitmap.png")
   json = swf.pathmap("#{bmpdir}/%n.bitmap.json")
   lwf = swf.pathmap("#{lwfdir}/%n.lwf")
@@ -57,26 +61,41 @@ SWF_FILES.each do |pairs|
   LWF_FILES.include(lwf)
   ROMLWF_FILES.include(romlwf)
   ROMBMP_FILES.include(rombmp)
-  CLEAN.include(lwfdir, bmpdir)
+  CLEAN.include(lwfdir)
+  unless publwf
+    CLEAN.include(bmpdir)
+  else
+    CLEAN.include(bmp, json)
+  end
   directory lwfdir
   directory bmpdir
   namespace :lwf do
-    file bmp => [swf, lwfdir, bmpdir] do |t| # extract texture and generate atlus
-      sh "ruby #{SWF2LWF_RB} -p #{t.prerequisites[0]}"
-      texs = FileList["#{t.prerequisites[1]}/*.png"]
-      sh "#{TEXTURE_PACKER} #{TEXTURE_PACKER_OPTS} --format json --data #{json} --sheet #{bmp} #{texs}"
-      rm "#{lwf}"
+    if publwf
+      # use publish for lwf
+      texsrc = FileList["#{bmpdir}/*.png"].exclude(bmp)
+      file bmp => [swf, lwfdir] + texsrc do |t|
+        sh "#{TEXTURE_PACKER} #{TEXTURE_PACKER_OPTS} --format json --data #{json} --sheet #{bmp} #{texsrc}"
+      end
+    else
+      # extract texture and generate atlas
+      file bmp => [swf, lwfdir, bmpdir] do |t|
+        sh "ruby #{SWF2LWF_RB} -p #{t.prerequisites[0]}"
+        texsrc = FileList["#{t.prerequisites[1]}/*.png"]
+        sh "#{TEXTURE_PACKER} #{TEXTURE_PACKER_OPTS} --format json --data #{json} --sheet #{bmp} #{texsrc}"
+        rm "#{lwf}"
+      end
     end
   end
   lwftask = File.dirname(swf) + '/' + File.basename(swf, ".*")
   desc "Convert #{swf}"
   task lwftask => [romlwf, rombmp]
+  #task lwftask => [bmp]
   namespace :lwf do
     file lwf => [swf, bmp] do |t| #
       if File.exist?(fla)
-        sh "ruby #{SWF2LWF_RB} -f #{fla} #{swf} #{json}"
+        sh "ruby #{SWF2LWF_RB} -s -f #{fla} #{swf} #{json}"
       else
-        sh "ruby #{SWF2LWF_RB} #{swf} #{json}"
+        sh "ruby #{SWF2LWF_RB} -s #{swf} #{json}"
       end
     end
     directory romdir

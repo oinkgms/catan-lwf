@@ -1,0 +1,93 @@
+{"frames": {
+
+"material_png_all.png":
+{
+	"frame": {"x":2,"y":85,"w":173,"h":254},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":173,"h":254},
+	"sourceSize": {"w":173,"h":254},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_arm_behind.png":
+{
+	"frame": {"x":124,"y":341,"w":49,"h":88},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":16,"y":23,"w":49,"h":88},
+	"sourceSize": {"w":179,"h":127},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_arm_infront.png":
+{
+	"frame": {"x":177,"y":328,"w":51,"h":99},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":18,"y":21,"w":51,"h":99},
+	"sourceSize": {"w":90,"h":124},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_body.png":
+{
+	"frame": {"x":177,"y":130,"w":95,"h":69},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":2,"w":95,"h":69},
+	"sourceSize": {"w":98,"h":72},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_head.png":
+{
+	"frame": {"x":2,"y":341,"w":144,"h":120},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":144,"h":120},
+	"sourceSize": {"w":150,"h":121},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_leg.png":
+{
+	"frame": {"x":177,"y":85,"w":43,"h":70},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":0,"w":43,"h":70},
+	"sourceSize": {"w":46,"h":70},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_waist.png":
+{
+	"frame": {"x":177,"y":227,"w":99,"h":55},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":2,"w":99,"h":55},
+	"sourceSize": {"w":100,"h":59},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_weapon_1.png":
+{
+	"frame": {"x":2,"y":2,"w":213,"h":81},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":213,"h":81},
+	"sourceSize": {"w":213,"h":81},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"material_png_weapon_2.png":
+{
+	"frame": {"x":217,"y":2,"w":1,"h":1},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":1},
+	"sourceSize": {"w":72,"h":72},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "orc.bitmap.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":512},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:340d2374a9eb51c199617daf15318199:9f5131ff7388e8596d4c1596b6c8a46d:6cc1244a13f0bb12b695804c92e46f73$"
+}
+}

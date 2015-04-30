@@ -27,7 +27,7 @@ sysinfo.txt
 /log-*.log
 unityproj/*.apk
 swf/**/*.lwfdata
-swf/**/*.bitmap
+swf/**/*.ext_bitmap
 
 
 
