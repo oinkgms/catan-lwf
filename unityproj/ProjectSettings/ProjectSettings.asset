@@ -256,7 +256,8 @@ PlayerSettings:
   psp2InfoBarColor: 0
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    4: CATAN_LWF_ENABLE_UNILUA
   metroPackageName: unityproj
   metroPackageLogo: 
   metroPackageLogo140: 
