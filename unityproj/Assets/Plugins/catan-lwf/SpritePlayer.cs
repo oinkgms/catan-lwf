@@ -6,11 +6,17 @@ namespace catan {
     using RenderType = SpriteObject.RenderType;
     [ExecuteInEditMode, AddComponentMenu("")]
     public partial class SpritePlayer : LWFObject {
-      private static bool _setLoader = false;
+      private static bool _globalInitialized = false;
+      private static int _multColorId, _addColorId, _lerpColorId;
       //
       [HideInInspector] public string _lwfName;
       [HideInInspector] public string _texDir;
       [HideInInspector] public RenderType _renderType = RenderType.Mesh;
+      //
+      private Color _multColor = new Color(1, 1, 1, 1);
+      private Color _addColor = new Color(0, 0, 0, 0);
+      private Color _lerpColor = new Color(1, 1, 1, 0);
+      private bool _dirty = true;
       //
       public string lwfName {
         get {
@@ -26,6 +32,24 @@ namespace catan {
       public LWF.Movie rootMovie {
         get { return lwf.rootMovie; }
       }
+      public Color multColor {
+        get { return _multColor; }
+        set { _multColor = value; _dirty = true; }
+      }
+      public Color addColor {
+        get { return _addColor; }
+        set { _addColor = value; _dirty = true; }
+      }
+      public Color lerpColor {
+        get { return _lerpColor; }
+        set { _lerpColor = value; _dirty = true; }
+      }
+      public void ClearColorAdjustment() {
+        _multColor = new Color(1, 1, 1, 1);
+        _addColor = new Color(0, 0, 0, 0);
+        _lerpColor = new Color(1, 1, 1, 0);
+        _dirty = true;
+      }
       //
       void Awake() {
         //_lwfobj = GetComponentInChildren<LwfSampleObject>();
@@ -34,8 +58,16 @@ namespace catan {
       void Start() {
         //GotoAndPlayMovie("_root", 1, true);
         load_lwf();
-				//materialProperty.Clear();
-				//materialProperty.AddColor("_HogeColor", Color.red);
+      }
+      void Update() {
+        if (_dirty) {
+          materialProperty.Clear();
+          materialProperty.AddColor(_lerpColorId, _lerpColor);
+          materialProperty.AddColor(_addColorId, _addColor);
+          materialProperty.AddColor(_multColorId, _multColor);
+          _dirty = false;
+        }
+        base.Update();
       }
       //
       //public void GotoAndPlayMovie(string instancename, string labelname, bool immortal=false) {
@@ -44,7 +76,7 @@ namespace catan {
       //}
       //
       private void load_lwf() {
-        set_loader();
+        global_init();
         switch (_renderType) {
         case RenderType.Mesh:
 #if UNITY_EDITOR
@@ -82,8 +114,8 @@ namespace catan {
           }
         }
       }
-      private static void set_loader() {
-        if (!_setLoader) {
+      private static void global_init() {
+        if (!_globalInitialized) {
           LWFObject.SetLoader(
             lwfDataLoader:(name) => {
               TextAsset asset = Resources.Load(name) as TextAsset;
@@ -100,7 +132,10 @@ namespace catan {
               return texture;
               }
           );
-          _setLoader = true;
+          _multColorId = Shader.PropertyToID("_MultColor");
+          _addColorId = Shader.PropertyToID("_AddColor");
+          _lerpColorId = Shader.PropertyToID("_LerpColor");
+          _globalInitialized = true;
         }
       }
     }

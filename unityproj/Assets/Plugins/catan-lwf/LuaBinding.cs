@@ -12,6 +12,10 @@ namespace catan {
         NameFuncPair[] mfuncs = new NameFuncPair[]{
           new NameFuncPair("load", L_load),
           new NameFuncPair("play", L_play),
+          new NameFuncPair("set_mult_color", L_set_mult_color),
+          new NameFuncPair("set_add_color", L_set_add_color),
+          new NameFuncPair("set_lerp_color", L_set_lerp_color),
+          new NameFuncPair("clear_color_adjustment", L_clear_color_adjustment),
         };
         register_class(lua, klassName, mfuncs);
         LuaGameObject.constructorHook += add_sprite_object;
@@ -53,6 +57,45 @@ namespace catan {
         //Debug.Log(so);
         //Debug.Log(movie);
         so.player.GotoAndPlayMovie("_root", movie);
+        return 0;
+      }
+      // @desc 乗算色を指定する
+      // @decl set_mult_color(self, color)
+      // @param color カラー
+      private static int L_set_mult_color(ILuaState lua) {
+        check_identifier(lua, 1, klassName);
+        SpriteObject so = get_component<SpriteObject>(lua, 1);
+        Color col = ColorClass.ToColor(lua, 2);
+        so.player.multColor = col;
+        return 0;
+      }
+      // @desc 加算色を指定する
+      // @decl set_add_color(self, color)
+      // @param color カラー
+      private static int L_set_add_color(ILuaState lua) {
+        check_identifier(lua, 1, klassName);
+        SpriteObject so = get_component<SpriteObject>(lua, 1);
+        Color col = ColorClass.ToColor(lua, 2);
+        so.player.addColor = col;
+        return 0;
+      }
+      // @desc 補間色を指定する
+      // @decl set_lerp_color(self, color)
+      // @param color カラー
+      private static int L_set_lerp_color(ILuaState lua) {
+        check_identifier(lua, 1, klassName);
+        SpriteObject so = get_component<SpriteObject>(lua, 1);
+        Color col = ColorClass.ToColor(lua, 2);
+        so.player.lerpColor = col;
+        return 0;
+      }
+      // @desc 色いじりをクリアする
+      // @decl clear_color_adjustment(self)
+      // @param color カラー
+      private static int L_clear_color_adjustment(ILuaState lua) {
+        check_identifier(lua, 1, klassName);
+        SpriteObject so = get_component<SpriteObject>(lua, 1);
+        so.player.ClearColorAdjustment();
         return 0;
       }
     }
