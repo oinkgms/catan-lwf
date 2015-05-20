@@ -6,7 +6,7 @@ UNITYPROJ_PATH = File.expand_path("#{SELF_PATH}/../../../../")
 
 TEXTURE_PACKER = '/Applications/TexturePacker.app/Contents/MacOS/TexturePacker'
 HAS_TEXTURE_PACKER = File.exist?(TEXTURE_PACKER)
-TEXTURE_PACKER_OPTS = '--size-constraints POT --algorithm MaxRects --maxrects-heuristics Best --scale 1.0 --pack-mode Best'
+TEXTURE_PACKER_OPTS = '--force-squared --size-constraints POT --algorithm MaxRects --maxrects-heuristics Best --scale 1.0 --pack-mode Best'
 SWF2LWF_RB = File.expand_path("#{SELF_PATH}/swf2lwf/swf2lwf.rb")
 
 #SWF_DIR ||= File.expand_path("#{UNITYPROJ_PATH}/../swf")
