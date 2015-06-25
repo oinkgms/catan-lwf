@@ -6,9 +6,14 @@ UNITYPROJ_PATH = File.expand_path("#{SELF_PATH}/../../../../")
 
 TEXTURE_PACKER = '/Applications/TexturePacker.app/Contents/MacOS/TexturePacker'
 HAS_TEXTURE_PACKER = File.exist?(TEXTURE_PACKER)
-TEXTURE_PACKER_OPTS = '--force-squared --size-constraints POT --algorithm MaxRects --maxrects-heuristics Best --scale 1.0 --pack-mode Best --texture-format png --png-opt-level 1 --opt RGBA4444 --max-size 2048 --scale-mode Smooth --trim-mode None --trim-threshold 1 --border-padding 2 --shape-padding 2 --inner-padding 0 --common-divisor-x 1 --common-divisor-y 1 --reduce-border-artifacts --dither-fs-alpha'
-SWF2LWF_RB = File.expand_path("#{SELF_PATH}/swf2lwf/swf2lwf.rb")
 
+# rakeにオプションとして渡せるパラメータ
+TEXFMT = ENV['TEXFMT'] || 'RGBA8888'
+DITHER = ENV['DITHER'] || ''
+SIZE = ENV['SIZE'] || 'AnySize'
+
+TEXTURE_PACKER_OPTS = "--force-squared --size-constraints #{SIZE} --algorithm MaxRects --maxrects-heuristics Best --scale 1.0 --pack-mode Best --texture-format png --png-opt-level 1 --opt #{TEXFMT} --max-size 2048 --scale-mode Smooth --trim-mode None --trim-threshold 1 --border-padding 2 --shape-padding 2 --inner-padding 0 --common-divisor-x 1 --common-divisor-y 1 --reduce-border-artifacts #{DITHER}"
+SWF2LWF_RB = File.expand_path("#{SELF_PATH}/swf2lwf/swf2lwf.rb")
 #SWF_DIR ||= File.expand_path("#{UNITYPROJ_PATH}/../swf")
 #LWF_DIR ||= File.expand_path("#{UNITYPROJ_PATH}/Assets/Resources/")
 SWF_DIR ||= ""
