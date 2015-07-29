@@ -13,6 +13,7 @@ namespace catan {
       [HideInInspector] public string _texDir;
       [HideInInspector] public RenderType _renderType = RenderType.Mesh;
       //
+      private int _initialFrameRate;
       private Color _multColor = new Color(1, 1, 1, 1);
       private Color _addColor = new Color(0, 0, 0, 0);
       private Color _lerpColor = new Color(1, 1, 1, 0);
@@ -69,6 +70,12 @@ namespace catan {
         }
         base.Update();
       }
+      public void SetFrameRate(int fps) {
+        lwf.SetFrameRate(fps);
+      }
+      public void SetPlaySpeed(float spd) {
+        lwf.SetFrameRate((int)(_initialFrameRate * spd));
+      }
       //
       //public void GotoAndPlayMovie(string instancename, string labelname, bool immortal=false) {
       //  GotoAndPlay(labelname);
@@ -91,6 +98,7 @@ namespace catan {
           break;
         }
         Load(_lwfName, _texDir, useAdditionalColor:true, shaderName:"Oink/LWF");
+        _initialFrameRate = lwf.frameRate;
         //AttachLWF("_root", _lwfName, "_root");
         //var labels = lwf.rootMovie.GetCurrentLabels();
         //foreach (LWF.LabelData data in labels) {
