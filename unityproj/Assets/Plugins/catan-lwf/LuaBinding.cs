@@ -18,6 +18,8 @@ namespace catan {
           new NameFuncPair("clear_color_adjustment", L_clear_color_adjustment),
           new NameFuncPair("set_fps", L_set_fps),
           new NameFuncPair("set_play_speed", L_set_play_speed),
+          new NameFuncPair("set_frame_skip", L_set_frame_skip),
+          new NameFuncPair("set_preferred_fps", L_set_preferred_fps),
         };
         register_class(lua, klassName, mfuncs);
         LuaGameObject.constructorHook += add_sprite_object;
@@ -110,6 +112,18 @@ namespace catan {
         check_identifier(lua, 1, klassName);
         SpriteObject so = get_component<SpriteObject>(lua, 1);
         so.player.SetPlaySpeed((float)lua.ToNumber(2));
+        return 0;
+      }
+      private static int L_set_frame_skip(ILuaState lua) {
+        check_identifier(lua, 1, klassName);
+        SpriteObject so = get_component<SpriteObject>(lua, 1);
+        so.player.lwf.SetFrameSkip(lua.ToBoolean(2));
+        return 0;
+      }
+      private static int L_set_preferred_fps(ILuaState lua) {
+        check_identifier(lua, 1, klassName);
+        SpriteObject so = get_component<SpriteObject>(lua, 1);
+        so.player.lwf.SetPreferredFrameRate(lua.ToInteger(2), lua.ToInteger(3));
         return 0;
       }
     }
